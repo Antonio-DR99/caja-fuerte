@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hoja estilo/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Creepster&family=Londrina+Sketch&family=Pixelify+Sans:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yusei+Magic&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+
+    <!---->
+    <div class="contenedor-intro">
+        <div class="subcontenedor-intro">
+            <h1>CLAVE ENIGMA</h1>
+            <P>El Enigma ha lanzado su desafío final: una cuenta regresiva que amenaza con destruir Gotham en una explosión devastadora. Solo tú puedes detenerlo… si eres capaz de descifrar el código de 3 dígitos que ha ocultado en sus retorcidos acertijos. Usa tu ingenio, analiza cada pista, y recuerda: en esta ciudad oscura, cada segundo cuenta. ¿Podrás descifrar la contraseña y salvar Gotham antes de que sea demasiado tarde? El destino de Gotham está en tus manos. ¿Aceptas el reto?</P>
+        </div>
+    </div>
+    <!---->
+    <div class="contenedor-grande-normas">
+        <div class="contenedor-normas">
+            <img src="img/icono-batman.png">
+            <h2>Normas</h2>
+            <ul>
+                <li>"La oscuridad es tu aliada": Acierta la combinación secreta de 3 números en 5 intentos.</li>
+                <li>"Cada pista es valiosa": Recibe pistas sobre números correctos o mal posicionados.</li>
+                <li>"Tus intentos son limitados": Tienes solo 5 intentos para resolver el enigma.</li>
+                <li>"Un verdadero detective no se rinde": Usa las pistas sabiamente para resolver el misterio.</li>
+                <li>"La ciudad nunca duerme": Cada sesión trae un nuevo enigma por resolver.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="contenedor-flex">
+        <div class="contenedor-intentos" id="intentos">
+            <h3>Tus intentos son solo piezas del rompecabezas</h3>
+            <p id="intentosRestantes">Intentos Restantes: 5</p>
+            <img src="img/enigma.png">
+        </div>
+
+        <div class="contenedor-general">
+            <div class="subcontenedor-general">
+                <div class="contenedor-password">
+                    <h2>Batsignal Panel</h2>
+                    <img src="img/icono-enigma.png"  onclick="mostrarPassword();">
+                    <input type="password" id="password">
+                </div>
+    
+                <div class="contenedor-num">
+                    <h2>Codigo Gotham</h2>
+                    <input type="text" id="num1" placeholder="Primer Numero">
+                    <input type="text" id="num2" placeholder="Segundo Numero">
+                    <input type="text" id="num3" placeholder="Tercer Numero">
+                </div>
+    
+                <div class="contenedor-boton">
+                    <input type="button" value="Comprobacion" onclick="comprobacion();">
+                </div>
+            </div>
+        </div>
+
+        <div class="contenedor-pistas">
+            <h3>Gotham me necesita, y no importa el sacrificio, siempre estaré ahí para protegerla.</h3>
+            <p id="pista1"></p>        
+            <p id="pista2"></p>        
+            <p id="pista3"></p> 
+            <img src="img/batman.png">       
+        </div>
+    </div>
+
+    <div class="contenedor-reset">
+        <div class="subcontenedor-reset" style="display: none;" id="reset">
+            <p>¡Ja, ja, ja! ¿En serio pensaste que podrías vencerme? Mis acertijos no son para mentes débiles… ¡y has fallado miserablemente! Gotham pagará el precio de tu fracaso. La próxima vez, si es que sobrevives, piensa mejor antes de enfrentarme.</p>
+            <input type="button" value="Reintentar el Desafío" onclick="reset();">
+            <img src="img/enigma-perdistes.png">
+        </div>
+    </div>
+
+    <div class="contenedor-ganar">
+        <div class="subcontenedor-ganar" id="ganar" style="display: none;">
+            <p>Has hecho lo necesario. Gotham sigue en pie gracias a ti. Nunca olvides: la oscuridad puede ser vencida.</p>
+            <input type="button" onclick="reset();" value="Jugar de Nuevo">
+            <img src="img/batman-ganar.png" >
+        </div>
+    </div>
+    <script type="text/javascript">
+        var num1;//almacenamos el primer numero 
+        var num2;//almecaenamos el segundo nuemero
+        var num3;//almacenamos el tercer numero 
+        var pass1;//almacenmos el primer numero secreto
+        var pass2; //almacenamos el segundo numero secreto
+        var pass3; //almacenamos el tercer numero secreto
+        var password; //almacemaos el total de numeros secretos
+        var intentos=5 //para saber los intentos restantes le damos un valor de 5 
+        var mostrar; 
+
+        //generamos numeros random 
+        pass1=Math.floor(Math.random()*10); 
+        pass2=Math.floor(Math.random()*10); 
+        pass3=Math.floor(Math.random()*10); 
+
+        password= pass1+""+pass2+""+pass3; 
+        document.getElementById('password').value=password;
+
+        //funcion para la comprobacion de los numeros introducidos y las pistas de los numeros
+        function comprobacion(){
+
+            num1=parseInt(document.getElementById('num1').value);
+            num2=parseInt(document.getElementById('num2').value);
+            num3=parseInt(document.getElementById('num3').value);
+
+            if (intentos>0) {
+                intentos=intentos-1; 
+                document.getElementById('intentosRestantes').innerHTML="Intentos restantes: "+intentos;
+            }
+            
+            if(intentos==0){
+                document.getElementById('reset').style.display='block';
+                
+            }
+
+            //comprobar el primer numero
+            if (num1<pass1) {
+                document.getElementById('pista1').innerHTML="Primer Numero: Creo que el numero es mayor al que has introducido";
+
+                
+            }else if(num1>pass1){
+                document.getElementById('pista1').innerHTML="Primer Numero: Creo que el numero es menor al que has introducido"; 
+
+            }else{
+                document.getElementById('pista1').innerHTML="Primer Numero: ¡Correcto! lo has adivinado"
+            }
+
+            //comporbar el segundo numero
+            if (num2<pass2) {
+                document.getElementById('pista2').innerHTML="Segundo Numero: Creo que el numero es mayor al que has introducido";
+                
+            }else if(num2>pass2){
+                document.getElementById('pista2').innerHTML="Segundo Numero: Creo que el numero es menor al que has introducido"; 
+
+            }else{
+                document.getElementById('pista2').innerHTML=" Segundo Numero: ¡Correcto! lo has adivinado"; 
+            }
+
+            //comprobar el tercer numero
+            if (num3<pass3) {
+                document.getElementById('pista3').innerHTML="Tercer Numero: Creo que el numero es mayor al que has introducido";
+                
+            }else if(num3>pass3){
+                document.getElementById('pista3').innerHTML="Tercer Numero: Creo que el numero es menor al que has introducido"; 
+
+            }else{
+                document.getElementById('pista3').innerHTML=" Tercer Numero: ¡Correcto! lo has adivinado"; 
+            }
+
+            //Verifica si los 3 numeros han sido adivinados
+            if (num1==pass1 && num2==pass2 && num3==pass3) {
+                document.getElementById('ganar').style.display='block';
+            }
+        }
+
+        function mostrarPassword(){
+            mostrar=document.getElementById('password'); 
+
+            if (mostrar.type=='password') {
+                mostrar.type='text'; 
+
+            }else{
+                mostrar.type='password';
+            }
+        }
+
+        function reset(){
+            intentos=5; 
+
+            document.getElementById('intentos').style.display='block'; 
+            document.getElementById('intentosRestantes').innerHTML="Intentos restantes: "+intentos; 
+
+            pass1=Math.floor(Math.random()*10);
+            pass2=Math.floor(Math.random()*10);
+            pass3=Math.floor(Math.random()*10);
+
+            password=pass1+""+pass2+""+pass3; 
+            document.getElementById('password').value=password; 
+
+            document.getElementById('pista1').innerHTML="";
+            document.getElementById('pista2').innerHTML="";
+            document.getElementById('pista3').innerHTML="";
+
+
+            document.getElementById('pista1').style.display='block';
+            document.getElementById('pista2').style.display='block';
+            document.getElementById('pista3').style.display='block';
+
+            document.getElementById('num1').value="";
+            document.getElementById('num2').value="";
+            document.getElementById('num3').value="";
+
+            document.getElementById('reset').style.display='none';
+            document.getElementById('ganar').style.display='none';
+        }
+    </script>
+</body>
+</html>
