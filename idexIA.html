@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hoja estilo/index.css">
+    <link rel="stylesheet" href="hoja estilo/indexIA.css">
     <title></title>
 </head>
 <body>
@@ -100,124 +100,122 @@
 
 
     <script type="text/javascript">
-        var num1=''; //almacenamos el primer numero 
-        var num2=''; //almecaenamos el segundo nuemero
-        var num3=''; //almacenamos el tercer numero 
-        var pass1; //almacenmos el primer numero secreto
-        var pass2; //almacenamos el segundo numero secreto
-        var pass3; //almacenamos el tercer numero secreto
-        var password; //almacemaos el total de numeros secretos
-        var intentos=5 //para saber los intentos restantes le damos un valor de 5 
+        var num1 = ''; //almacenamos el primer numero 
+var num2 = ''; //almacenamos el segundo numero
+var num3 = ''; //almacenamos el tercer numero 
+var pass1, pass2, pass3; //almacenamos los números secretos
+var password; //almacenamos el total de números secretos
+var intentos = 5; //intentos restantes
 
-        //generamos numeros random 
-        pass1=Math.floor(Math.random()*10); 
-        pass2=Math.floor(Math.random()*10); 
-        pass3=Math.floor(Math.random()*10); 
+// Generamos números aleatorios entre 0 y 9
+pass1 = Math.floor(Math.random() * 10);
+pass2 = Math.floor(Math.random() * 10);
+pass3 = Math.floor(Math.random() * 10);
 
-        password= pass1+""+pass2+""+pass3; 
-        document.getElementById('password').value=password;
+password = pass1 + "" + pass2 + "" + pass3; 
+document.getElementById('password').value = password;
 
-        //para que el susario ingrese los numeros en la caja de texto
-        function appendNumber(number){
-            
-            
-            if (num1.length<1) {
-                 num1=number;
-                document.getElementById('num1').value=num1;
-            }else if(num2.length<1){
-                num2=number;
-                document.getElementById('num2').value=num2;
-            }else if(num3.length<1){
-                num3=number; 
-                document.getElementById('num3').value=num3;
-            }
-        }
+// Función para ingresar números en las cajas de texto
+function appendNumber(number) {
+    if (num1.length < 1) {
+        num1 = number;
+        document.getElementById('num1').value = num1;
+    } else if (num2.length < 1) {
+        num2 = number;
+        document.getElementById('num2').value = num2;
+    } else if (num3.length < 1) {
+        num3 = number;
+        document.getElementById('num3').value = num3;
+    }
+}
 
-        //funcion para la comprobacion de los numeros introducidos y las pistas de los numeros
-        function comprobacion(){
+// Función para la comprobación de los números introducidos y las pistas
+function comprobacion() {
+    if (intentos > 0) {
+        intentos = intentos - 1;
+        document.getElementById('intentos').innerHTML = "Intentos restantes: " + intentos;
+    }
 
-            if (intentos>0) {
-                intentos=intentos-1; 
-                document.getElementById('intentos').innerHTML="Intentos restantes: "+intentos;
-            }
-            
-            if(intentos==0){
-                document.getElementById('reset').style.display='block';
-                
-            }
+    if (intentos == 0) {
+        document.getElementById('reset').style.display = 'block';
+    }
 
-            //comprobar el primer numero
-            if (num1<pass1) {
-                document.getElementById('pista1').innerHTML="Primer Numero: Creo que el numero es mayor al que has introducido";
-                
-            }else if(num1>pass1){
-                document.getElementById('pista1').innerHTML="Primer Numero: Creo que el numero es menor al que has introducido"; 
+    // Comprobar el primer número
+    if (num1 < pass1) {
+        document.getElementById('pista1').innerHTML = "Primer Número: Creo que el número es mayor al que has introducido";
+    } else if (num1 > pass1) {
+        document.getElementById('pista1').innerHTML = "Primer Número: Creo que el número es menor al que has introducido";
+    } else {
+        document.getElementById('pista1').innerHTML = "Primer Número: ¡Correcto! lo has adivinado";
+    }
 
-            }else{
-                document.getElementById('pista1').innerHTML="Primer Numero: ¡Correcto! lo has adivinado"
-            }
+    // Comprobar el segundo número
+    if (num2 < pass2) {
+        document.getElementById('pista2').innerHTML = "Segundo Número: Creo que el número es mayor al que has introducido";
+    } else if (num2 > pass2) {
+        document.getElementById('pista2').innerHTML = "Segundo Número: Creo que el número es menor al que has introducido";
+    } else {
+        document.getElementById('pista2').innerHTML = "Segundo Número: ¡Correcto! lo has adivinado";
+    }
 
-            //comporbar el segundo numero
-            if (num2<pass2) {
-                document.getElementById('pista2').innerHTML="Segundo Numero: Creo que el numero es mayor al que has introducido";
-                
-            }else if(num2>pass2){
-                document.getElementById('pista2').innerHTML="Segundo Numero: Creo que el numero es menor al que has introducido"; 
+    // Comprobar el tercer número
+    if (num3 < pass3) {
+        document.getElementById('pista3').innerHTML = "Tercer Número: Creo que el número es mayor al que has introducido";
+    } else if (num3 > pass3) {
+        document.getElementById('pista3').innerHTML = "Tercer Número: Creo que el número es menor al que has introducido";
+    } else {
+        document.getElementById('pista3').innerHTML = "Tercer Número: ¡Correcto! lo has adivinado";
+    }
 
-            }else{
-                document.getElementById('pista2').innerHTML=" Segundo Numero: ¡Correcto! lo has adivinado"; 
-            }
+    // Verifica si los 3 números han sido adivinados
+    if (num1 == pass1 && num2 == pass2 && num3 == pass3) {
+        document.getElementById('ganar').style.display = 'block';
+        document.getElementById('intentos').style.display = 'none'; // Ocultar los intentos cuando ganas
+    }
 
-            //comprobar el tercer numero
-            if (num3<pass3) {
-                document.getElementById('pista3').innerHTML="Tercer Numero: Creo que el numero es mayor al que has introducido";
-                
-            }else if(num3>pass3){
-                document.getElementById('pista3').innerHTML="Tercer Numero: Creo que el numero es menor al que has introducido"; 
+    // Limpiar los campos de entrada después de cada comprobación
+    num1 = "";
+    num2 = "";
+    num3 = "";
 
-            }else{
-                document.getElementById('pista3').innerHTML=" Segundo Numero: ¡Correcto! lo has adivinado"; 
-            }
+    document.getElementById('num1').value = "";
+    document.getElementById('num2').value = "";
+    document.getElementById('num3').value = "";
+}
 
-             //Verifica si los 3 numeros han sido adivinados
-            if (num1==pass1 && num2==pass2 && num3==pass3) {
-                document.getElementById('ganar').style.display='block';
-            }
+// Función para reiniciar el juego
+function reset() {
+    intentos = 5;
+    document.getElementById('intentos').innerHTML = "Intentos restantes: " + intentos;
+    
+    // Generar nuevos números aleatorios
+    pass1 = Math.floor(Math.random() * 10);
+    pass2 = Math.floor(Math.random() * 10);
+    pass3 = Math.floor(Math.random() * 10);
+    
+    password = pass1 + "" + pass2 + "" + pass3;
+    document.getElementById('password').value = password;
+    
+    // Limpiar pistas y entradas
+    document.getElementById('pista1').innerHTML = "";
+    document.getElementById('pista2').innerHTML = "";
+    document.getElementById('pista3').innerHTML = "";
+    
+    num1 = "";
+    num2 = "";
+    num3 = "";
+    
+    document.getElementById('num1').value = "";
+    document.getElementById('num2').value = "";
+    document.getElementById('num3').value = "";
 
-            //limpiar los campos de entrada despues de cada comprobacion
-            num1="";  
-            num2="";  
-            num3="";  
-           
+    document.getElementById('reset').style.display = 'none';
+    document.getElementById('ganar').style.display = 'none'; // Ocultar mensaje de victoria al reiniciar
+    document.getElementById('intentos').style.display = 'block'; // Volver a mostrar intentos
+}
 
-        }
+        
 
-        function reset(){
-            intentos=5; 
-            document.getElementById('intentos').innerHTML="Intentos restantes: "+intentos; 
-
-            pass1=Math.floor(Math.random()*10);
-            pass2=Math.floor(Math.random()*10);
-            pass3=Math.floor(Math.random()*10);
-
-            password=pass1+"  "+pass2+"  "+pass3; 
-            document.getElementById('password').value=password; 
-
-            document.getElementById('pista1').innerHTML="";
-            document.getElementById('pista2').innerHTML="";
-            document.getElementById('pista3').innerHTML="";
-
-            num1="";
-            num2="";
-            num3="";
-            document.getElementById('num1').value="";
-            document.getElementById('num2').value="";
-            document.getElementById('num3').value="";
-
-            document.getElementById('reset').style.display='none';
-
-
-        }
     </script>
 
     <div class="contenedor-ganastes" id="ganar" style="display: none;">

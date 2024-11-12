@@ -1,0 +1,173 @@
+
+/* Establece el fondo oscuro y una tipografía elegante */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* Encabezado principal */
+.contenedor-intro {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contenedor-intro h1 {
+    font-size: 3em;
+    color: #ffcc00; /* Color amarillo que resalta */
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.contenedor-intro p {
+    font-size: 1.2em;
+    color: #ddd;
+}
+
+/* Normas del juego */
+.contenedor-normas {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 80%;
+}
+
+.contenedor-normas img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.contenedor-normas h2 {
+    color: #ffcc00;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.contenedor-normas ul {
+    list-style: none;
+    padding: 0;
+    color: #ddd;
+}
+
+.contenedor-normas li {
+    margin-bottom: 10px;
+}
+
+/* Área de intentos */
+.contenedor-intentos {
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+/* Pistas de los números */
+.contenedor-pistas {
+    font-size: 1.2em;
+    margin-top: 10px;
+    text-align: center;
+    color: #ccc;
+}
+
+/* Estilo para los inputs del código y los números */
+.contenedor-general {
+    text-align: center;
+    margin-top: 30px;
+}
+
+input[type="text"] {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    padding: 10px;
+    width: 60px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+input[type="button"] {
+    background-color: #ffcc00;
+    border: none;
+    color: #111;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background-color: #ff9900;
+}
+
+/* Estilo para el tablero numérico */
+.contenedor-numerico {
+    margin-top: 20px;
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #222;
+    color: #ffcc00;
+    padding: 15px;
+}
+
+td {
+    background-color: #333;
+    text-align: center;
+    padding: 10px;
+}
+
+button {
+    background-color: #444;
+    color: #ffcc00;
+    font-size: 1.5em;
+    border: none;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff9900;
+}
+
+/* Estilo para los mensajes de éxito */
+.contenedor-ganastes {
+    font-size: 2em;
+    color: #ffcc00;
+    display: none;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Contenedor de reinicio */
+.contenedor-reset {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contenedor-reset p {
+    font-size: 1.5em;
+    color: #f44336;
+}
+
+.contenedor-reset input[type="button"] {
+    background-color: #f44336;
+    color: white;
+}
